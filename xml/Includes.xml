@@ -5,6 +5,7 @@
 	<include file="Includes_Animations.xml" />
 	<include file="Includes_MediaMenu.xml" />
 	<include file="Includes_Buttons.xml" />
+	<include file="Includes_DialogSelect.xml" />
 	<include file="Includes_PVR.xml" />
 	<include file="View_50_List.xml" />
 	<include file="View_51_Poster.xml" />
@@ -32,7 +33,7 @@
 	<constant name="list_y_offset">0</constant>
 	<constant name="list_item_height">80</constant>
 	<expression name="infodialog_active">Window.IsActive(musicinformation) | Window.IsActive(songinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo) | Window.IsVisible(script-script.extendedinfo-DialogVideoInfo.xml) | Window.IsVisible(script-script.extendedinfo-DialogInfo.xml) | Window.IsVisible(script-script.extendedinfo-VideoList.xml)</expression>
-	<expression name="sidebar_focused">ControlGroup(9000).HasFocus | Control.HasFocus(6130) | Control.HasFocus(6131)</expression>
+	<expression name="sidebar_visible">ControlGroup(9000).HasFocus | Control.HasFocus(6130) | Control.HasFocus(6131) | Window.IsActive(MyPlaylist.xml)</expression>
 	<include name="CommonScrollbars">
 		<control type="group">
 			<animation effect="fade" start="100" end="0" time="150">WindowClose</animation>
@@ -935,6 +936,7 @@
 					<height>100</height>
 					<label></label>
 					<onclick>Action(Back)</onclick>
+					<visible>!Window.IsActive(home)</visible>
 					<texturefocus />
 					<texturenofocus />
 				</control>
@@ -1119,7 +1121,7 @@
 				<animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
 				<control type="group">
 					<animation effect="fade" start="100" end="bg_alpha" time="0" condition="!Control.IsVisible(31111)">Conditional</animation>
-					<animation effect="fade" start="0" end="100" time="300" condition="Window.Previous(fullscreenvideo) | Window.Previous(startup)">WindowOpen</animation>
+					<animation effect="fade" start="0" end="100" time="300" condition="Window.Previous(fullscreenvideo) | Window.Previous(FullscreenGame) | Window.Previous(startup)">WindowOpen</animation>
 					<include>ColoredBackgroundImages</include>
 				</control>
 				<control type="group" id="31111">
